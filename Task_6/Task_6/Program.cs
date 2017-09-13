@@ -32,8 +32,18 @@ namespace Task_6
                 }
                 else
                 {
+                    MasDouble[i] = 2 * Math.Abs(MasDouble[i - 1] - MasDouble[i - 2]) + MasDouble[i - 3];
                     for (int j = 0; i< Counter+3; j++)
                     {
+                        Sum += MasDouble[j];
+                    }
+
+
+
+                    if (Sum % 3 == 0)
+                    {
+                        //printElem
+                        Counter = N + 4;
 
                     }
                 }
