@@ -22,22 +22,50 @@ namespace Task_6_int
 по трём первым элементам.
 Сколько элементов в последовательности нужно постороить?");
             // сколько элементов должно быть в последовательности, плюс три заданные элементы
-            int N = Convert.ToInt16(Console.ReadLine());
+            bool ok = false;
+            int N = 0;
+            while (ok == false)
+            {
+                try
+                {
+                    N = Convert.ToInt16(Console.ReadLine());
+                    if (N>3)ok = true;
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Некорректный ввод...");
+                }
+            }
+            
             // массив для хранения элементов
             int[] MasInt = new int[N];
+            ok = false;
             Console.WriteLine("Введите последовательно три первых элемента через -Enter");
-            MasInt[0] = Convert.ToInt16(Console.ReadLine());
-            MasInt[1] = Convert.ToInt16(Console.ReadLine());
-            MasInt[2] = Convert.ToInt16(Console.ReadLine());
-            Console.WriteLine();
+            // проверка на ввод первых трёх элементов
+            while (ok == false)
+            {
+                try
+                {
+                    MasInt[0] = Convert.ToInt16(Console.ReadLine());
+                    MasInt[1] = Convert.ToInt16(Console.ReadLine());
+                    MasInt[2] = Convert.ToInt16(Console.ReadLine());
+                    Console.WriteLine();
+                    ok = true;
 
-            int Counter = 3;
-            int Sum = 0;
-            bool ok = true;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Некорректный ввод...");
+                }
+            }
+
+            int Counter = 3;// количество созданных элементов
+            int Sum = 0;// сумма элментов последовательности
+
+            // Алгоритм 
             for (int i = 3; i < N ; i++)
             {                
-                    
-
                     for (int j = 0; j < i+1; j++)
                     {
                         Sum += MasInt[j];
@@ -45,9 +73,9 @@ namespace Task_6_int
 
                     if (Sum % 3 == 0)
                     {
-
+                    // элементы кратны трём (их сумма)
                     //printElem
-                    Console.WriteLine("Процесс остановлен, так как нашлись первые " + Counter + " элемента(ов), кратных Трём");
+                    Console.WriteLine("Процесс остановлен, так как нашлись первые " + Counter + " элемента(ов), сумма которых кратна Трём");
                     PrintElem(Counter, MasInt);
                     ok = false;
                     break;          
@@ -56,9 +84,9 @@ namespace Task_6_int
 
                 MasInt[i] = 2 * Math.Abs(MasInt[i - 1] - MasInt[i - 2]) + MasInt[i - 3];
                 Counter++;
-
-
             }
+
+            // просчитаны все элементы последовательности
             if (ok)
             {
                 Console.WriteLine("Все элементы просчитаны");
